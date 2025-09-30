@@ -8,14 +8,19 @@ export default function Hero() {
   const [isPartnerModalOpen, setIsPartnerModalOpen] = useState(false)
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28 lg:pt-32">
-      {/* Background gradient with property image */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-white to-primary-100"></div>
-      <div className="absolute inset-0 opacity-20">
-        <img 
-          src="/propphoto/realestatesear.png.jpg" 
-          alt="Real estate background" 
+      {/* Background video with gradient overlay */}
+      <div className="absolute inset-0">
+        <video
           className="w-full h-full object-cover"
-        />
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
+          <source src="/herovideo.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-black/35"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-50/60 via-white/50 to-primary-100/60"></div>
       </div>
       
       {/* Animated Background Pattern */}
@@ -52,7 +57,7 @@ export default function Hero() {
           </h1>
           
           {/* Subtitle */}
-          <p className="text-xl md:text-2xl text-secondary-600 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in-up animation-delay-600">
+          <p className="text-xl md:text-2xl text-black mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in-up animation-delay-600">
             Excellence in real estate, restoration, and impact. We develop and invest in 
             real estate, businesses, and infrastructure that prioritize well-being, equity, 
             and long-term sustainability.
@@ -62,13 +67,13 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 animate-fade-in-up animation-delay-800">
             <Link
               href="#services"
-              className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl animate-pulse-gentle"
+              className="bg-primary-600 hover:bg-primary-700 text-gray-100 font-bold px-8 py-4 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl animate-pulse-gentle"
             >
               Explore Our Services
             </Link>
             <button
               onClick={() => setIsPartnerModalOpen(true)}
-              className="border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105"
+              className="bg-primary-600 hover:bg-primary-700 text-gray-100 font-bold px-8 py-4 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               Partner With Us
             </button>
@@ -78,15 +83,15 @@ export default function Hero() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto animate-fade-in-up animation-delay-1000">
             <div className="text-center transform hover:scale-105 transition-all duration-300">
               <div className="text-3xl font-bold text-primary-600 mb-2">🏢</div>
-              <div className="text-secondary-600">Real Estate Excellence</div>
+              <div className="text-black font-bold">Real Estate Excellence</div>
             </div>
             <div className="text-center transform hover:scale-105 transition-all duration-300">
               <div className="text-3xl font-bold text-primary-600 mb-2">🤝</div>
-              <div className="text-secondary-600">Strategic Partnerships</div>
+              <div className="text-black font-bold">Strategic Partnerships</div>
             </div>
             <div className="text-center transform hover:scale-105 transition-all duration-300">
               <div className="text-3xl font-bold text-primary-600 mb-2">🌱</div>
-              <div className="text-secondary-600">Community Growth</div>
+              <div className="text-black font-bold">Community Growth</div>
             </div>
           </div>
         </div>

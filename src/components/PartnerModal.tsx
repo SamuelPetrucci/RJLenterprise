@@ -221,6 +221,16 @@ export default function PartnerModal({ isOpen, onClose }: PartnerModalProps) {
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 resize-none"
             />
             
+            <div className="text-sm text-gray-600">
+              <p>
+                By submitting this form, you agree to our{' '}
+                <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-700 underline">
+                  Privacy Policy
+                </a>
+                .
+              </p>
+            </div>
+            
             <div className="flex gap-4">
               <button
                 type="submit"

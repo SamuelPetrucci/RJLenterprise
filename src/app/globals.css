@@ -69,6 +69,11 @@ html {
   background-clip: text;
 }
 
+/* Text enhancement for readability on video backgrounds */
+.hero-text-shadow {
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+}
+
 .card-hover {
   transition: all 0.3s ease;
 }
@@ -357,8 +362,9 @@ html {
 /* Scroll-triggered animations */
 .scroll-animate {
   opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.8s ease-out;
+  transform: translateY(24px);
+  transition: opacity 400ms ease, transform 400ms ease;
+  will-change: opacity, transform;
 }
 
 .scroll-animate.animate-in {
@@ -368,8 +374,9 @@ html {
 
 .scroll-animate-left {
   opacity: 0;
-  transform: translateX(-50px);
-  transition: all 0.8s ease-out;
+  transform: translateX(-24px);
+  transition: opacity 400ms ease, transform 400ms ease;
+  will-change: opacity, transform;
 }
 
 .scroll-animate-left.animate-in {
@@ -379,8 +386,9 @@ html {
 
 .scroll-animate-right {
   opacity: 0;
-  transform: translateX(50px);
-  transition: all 0.8s ease-out;
+  transform: translateX(24px);
+  transition: opacity 400ms ease, transform 400ms ease;
+  will-change: opacity, transform;
 }
 
 .scroll-animate-right.animate-in {
@@ -390,8 +398,9 @@ html {
 
 .scroll-animate-scale {
   opacity: 0;
-  transform: scale(0.8);
-  transition: all 0.8s ease-out;
+  transform: scale(0.96);
+  transition: opacity 450ms ease, transform 450ms ease;
+  will-change: opacity, transform;
 }
 
 .scroll-animate-scale.animate-in {

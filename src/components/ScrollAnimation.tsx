@@ -22,24 +22,28 @@ export default function ScrollAnimation({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setTimeout(() => {
-            setIsVisible(true)
-          }, delay)
+          // Trigger quickly when element enters viewport
+          if (delay > 0) {
+            const timer = setTimeout(() => setIsVisible(true), delay)
+            return () => clearTimeout(timer)
+          }
+          setIsVisible(true)
         }
       },
       {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.02,
+        rootMargin: '100px 0px -50px 0px'
       }
     )
 
-    if (ref.current) {
-      observer.observe(ref.current)
+    const current = ref.current
+    if (current) {
+      observer.observe(current)
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current)
+      if (current) {
+        observer.unobserve(current)
       }
     }
   }, [delay])
