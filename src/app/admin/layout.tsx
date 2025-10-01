@@ -25,7 +25,7 @@ export default function AdminLayout({
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
     // Simple password check - replace with proper authentication
-    if (password === 'rljadmin2024') {
+    if (password === 'razullatishajah2025!') {
       localStorage.setItem('admin_authenticated', 'true')
       setIsAuthenticated(true)
     } else {
@@ -84,11 +84,6 @@ export default function AdminLayout({
               </button>
             </div>
           </form>
-          <div className="text-center">
-            <p className="text-xs text-gray-500">
-              Default password: rljadmin2024
-            </p>
-          </div>
         </div>
       </div>
     )
