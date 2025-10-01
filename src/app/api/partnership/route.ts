@@ -64,11 +64,16 @@ export async function POST(request: NextRequest) {
 
     console.log('✅ Successfully saved to database! Partnership ID:', data.id)
 
-    // Send email notifications asynchronously (don't wait for completion)
-    console.log('⏳ Triggering email notifications...')
+    // Send email notifications (wait for completion to ensure delivery in serverless)
+    console.log('⏳ Sending email notifications...')
     
-    // Send emails in background (fire and forget)
-    sendPartnershipEmails(body).catch(err => console.error('Background email error:', err))
+    try {
+      await sendPartnershipEmails(body)
+      console.log('✅ Emails sent successfully!')
+    } catch (emailError) {
+      console.error('⚠️ Email sending failed (but form was saved):', emailError)
+      // Continue anyway - form is saved
+    }
 
     console.log('=== PARTNERSHIP FORM SUBMISSION COMPLETE ===')
     return NextResponse.json({
