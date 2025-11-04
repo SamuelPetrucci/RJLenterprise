@@ -17,6 +17,8 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     serviceInterest: '',
     message: ''
   })
+  
+  const [agreesToTOC, setAgreesToTOC] = useState(false)
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
@@ -26,12 +28,24 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
       ...formData,
       [e.target.name]: e.target.value
     })
+    // Clear error state when user makes changes
+    if (submitStatus === 'error') {
+      setSubmitStatus('idle')
+    }
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     console.log('=== CONTACT FORM SUBMISSION STARTED ===')
     console.log('Form data:', formData)
+    console.log('Agrees to TOC:', agreesToTOC)
+    
+    // Check if user agrees to TOC
+    if (!agreesToTOC) {
+      console.log('Form submission blocked: TOC checkbox not checked')
+      setSubmitStatus('error')
+      return
+    }
     
     setIsSubmitting(true)
     
@@ -74,6 +88,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
           serviceInterest: '', 
           message: '' 
         })
+        setAgreesToTOC(false)
         // Close modal after successful submission
         setTimeout(() => {
           onClose()
@@ -243,14 +258,34 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 resize-none"
             />
             
-            <div className="text-sm text-gray-600">
-              <p>
-                By submitting this form, you agree to our{' '}
-                <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-700 underline">
-                  Privacy Policy
-                </a>
-                .
-              </p>
+            <div className="space-y-4">
+              <div className="flex items-start space-x-3">
+                <input
+                  type="checkbox"
+                  id="agreesToTOC"
+                  checked={agreesToTOC}
+                  onChange={(e) => {
+                    setAgreesToTOC(e.target.checked)
+                    // Clear error state when checkbox is changed
+                    if (submitStatus === 'error') {
+                      setSubmitStatus('idle')
+                    }
+                  }}
+                  className="mt-1 h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+                  required
+                />
+                <label htmlFor="agreesToTOC" className="text-sm text-gray-600 leading-relaxed">
+                  I agree to the{' '}
+                  <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-700 underline">
+                    Terms of Conditions and Privacy Policy
+                  </a>
+                  . By opting into SMS from this web form or other medium, I am agreeing to receive SMS messages from RLJ Enterprise. This includes SMS messages for conversations (external). Message frequency varies. Message and data rates may apply. See our privacy policy at{' '}
+                  <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:text-primary-700 underline">
+                    https://www.rljenterprisect.com/privacy-policy
+                  </a>
+                  . Message HELP for help. Reply STOP to any message to opt out. *
+                </label>
+              </div>
             </div>
             
             <div className="flex gap-4">
@@ -279,7 +314,12 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
             {submitStatus === 'error' && (
               <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg">
                 <div className="font-medium">Sorry, there was an error submitting your form.</div>
-                <div className="text-sm mt-1">Please check that all required fields are filled out and try again.</div>
+                <div className="text-sm mt-1">
+                  {!agreesToTOC 
+                    ? "Please agree to the Terms of Conditions and Privacy Policy by checking the checkbox above." 
+                    : "Please check that all required fields are filled out and try again."
+                  }
+                </div>
                 <div className="text-xs mt-2 text-red-600">
                   Check the browser console for more details.
                 </div>

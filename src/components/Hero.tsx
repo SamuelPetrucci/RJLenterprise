@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import PartnerModal from './PartnerModal'
+import ContactModal from './ContactModal'
 
 export default function Hero() {
   const [isPartnerModalOpen, setIsPartnerModalOpen] = useState(false)
@@ -100,8 +100,8 @@ export default function Hero() {
 
 
       {/* Partner Modal */}
-      <PartnerModal 
-        isOpen={isPartnerModalOpen} 
+            <ContactModal 
+        isOpen={isPartnerModalOpen}
         onClose={() => setIsPartnerModalOpen(false)} 
       />
     </section>

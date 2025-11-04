@@ -73,6 +73,19 @@ export default function PrivacyPolicy() {
             </section>
 
             <section className="mb-8">
+              <h2 className="text-2xl font-bold text-secondary-900 mb-4">SMS Opt-In Terms</h2>
+              <p className="text-secondary-600 leading-relaxed mb-4">
+                By opting into SMS from a web form or other medium, you are agreeing to receive SMS messages from RLJ Enterprise. This includes SMS messages for conversations (external). Message frequency varies. Message and data rates may apply.
+              </p>
+              <p className="text-secondary-600 leading-relaxed mb-4">
+                You can get help by texting HELP to any message, or opt out at any time by replying STOP to any message you receive. You will then receive one final message confirming your opt-out.
+              </p>
+              <p className="text-secondary-600 leading-relaxed">
+                See our privacy policy at https://www.rljenterprisect.com/privacy-policy for more information about how we handle your data.
+              </p>
+            </section>
+
+            <section className="mb-8">
               <h2 className="text-2xl font-bold text-secondary-900 mb-4">Your Consent</h2>
               <p className="text-secondary-600 leading-relaxed">
                 By providing your phone number and opting into SMS messages, you consent to our collection and use of your information as described in this policy.
