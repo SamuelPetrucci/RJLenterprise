@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import Chatbot from '@/components/Chatbot'
+import { Analytics } from '@vercel/analytics/next'
 
 export const metadata: Metadata = {
   title: 'RLJ Enterprise - Building Conscious Communities',
@@ -29,6 +30,7 @@ export default function RootLayout({
       <body className="antialiased">
         {children}
         <Chatbot />
+        <Analytics />
       </body>
     </html>
   )
