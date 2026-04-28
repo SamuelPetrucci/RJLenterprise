@@ -2,19 +2,22 @@
 
 import { useState, useEffect } from 'react'
 
+/** Seconds each team member stays visible before auto-advance */
+const TEAM_ROTATION_SECONDS = 30
+
 export default function Team() {
   const [currentMember, setCurrentMember] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
-  const [timeRemaining, setTimeRemaining] = useState(12)
+  const [timeRemaining, setTimeRemaining] = useState(TEAM_ROTATION_SECONDS)
 
   const teamMembers = [
     {
       name: "Razul Wallace",
-      title: "Chief Financial Officer | Co-Founder",
+      title: "Founder & Managing Member | Co-Founder",
       initials: "RW",
       headshot: "/headshots/razul.png",
-      bio: "A Brooklyn native with over 20 years of experience, Razul achieved financial freedom through real estate by age 22 and built a multimillion-dollar portfolio. As CFO, he leads RLJ's financial planning and investment strategy, bringing focus, consistency, and strategic insight to every project while advancing the mission to create ownership and equity through conscious development.",
-      expertise: ["Real Estate Investment", "Financial Strategy", "Multifamily Acquisitions", "Capital Operations"],
+      bio: "Razul is a Brooklyn-born entrepreneur and real estate investor based in Connecticut, with over 20 years of experience in real estate investing and acquisition. As Founder and Managing Member of RLJ Enterprise, he oversees a growing rental portfolio, development projects, and investment strategy — with a focus on creating ownership and equity through conscious, community-centered development.\n\nHe is also the driving force behind House of Changes (HOC), a community organization dedicated to expanding access to stable, quality housing and creating pathways to long-term stability for the people and neighborhoods it serves.\n\nRazul brings operational depth, deal structuring expertise, and mission clarity to every project — building enterprises that generate wealth while creating meaningful opportunity for the communities he serves.",
+      expertise: ["Investment & Acquisition", "Community-Centered Development", "House of Changes (HOC)", "Operational Leadership"],
       education: "B.A. Economics, University of Connecticut"
     },
     {
@@ -36,15 +39,6 @@ export default function Team() {
       education: "Extensive Leadership & Community Development"
     },
     {
-      name: "Barbara Acompora",
-      title: "Property Director",
-      initials: "BA",
-      headshot: "/headshots/barbara.png",
-      bio: "Barbara brings extensive expertise in property management and real estate operations. Her attention to detail and commitment to excellence ensures that all RLJ properties are maintained to the highest standards while supporting both tenant wellbeing and investor returns.",
-      expertise: ["Property Management", "Asset Operations", "Tenant Relations", "Facility Management"],
-      education: "Bachelor's in Business Management, Property Management Certification"
-    },
-    {
       name: "Theresa Palma Gil",
       title: "Admin & Execution Partner",
       initials: "TP",
@@ -61,9 +55,9 @@ export default function Team() {
       setTimeout(() => {
         setCurrentMember((prev) => (prev + 1) % teamMembers.length)
         setIsTransitioning(false)
-        setTimeRemaining(12) // Reset timer after transition
+        setTimeRemaining(TEAM_ROTATION_SECONDS)
       }, 500) // Brief loading state before transition
-    }, 12000) // Change every 12 seconds (slower rotation)
+    }, TEAM_ROTATION_SECONDS * 1000)
 
     return () => clearInterval(interval)
   }, [])
@@ -73,7 +67,7 @@ export default function Team() {
     const timer = setInterval(() => {
       setTimeRemaining((prev) => {
         if (prev <= 1) {
-          return 12 // Reset to 12 when it reaches 0
+          return TEAM_ROTATION_SECONDS
         }
         return prev - 1
       })
@@ -87,6 +81,7 @@ export default function Team() {
     setTimeout(() => {
       setCurrentMember((prev) => (prev + 1) % teamMembers.length)
       setIsTransitioning(false)
+      setTimeRemaining(TEAM_ROTATION_SECONDS)
     }, 500)
   }
 
@@ -95,6 +90,7 @@ export default function Team() {
     setTimeout(() => {
       setCurrentMember((prev) => (prev - 1 + teamMembers.length) % teamMembers.length)
       setIsTransitioning(false)
+      setTimeRemaining(TEAM_ROTATION_SECONDS)
     }, 500)
   }
 
@@ -105,6 +101,7 @@ export default function Team() {
     setTimeout(() => {
       setCurrentMember(index)
       setIsTransitioning(false)
+      setTimeRemaining(TEAM_ROTATION_SECONDS)
     }, 500)
   }
 
@@ -118,7 +115,7 @@ export default function Team() {
             Meet Our Team
           </h2>
           <p className="text-xl text-secondary-600 max-w-3xl mx-auto">
-            Five leaders united by a shared commitment to community transformation, 
+            Four leaders united by a shared commitment to community transformation, 
             economic empowerment, and sustainable development.
           </p>
         </div>
@@ -177,9 +174,13 @@ export default function Team() {
 
               {/* Bio Section */}
               <div className="p-12">
-                <p className="text-lg text-secondary-600 leading-relaxed mb-8">
-                  {teamMembers[currentMember].bio}
-                </p>
+                <div className="mb-8 space-y-4">
+                  {teamMembers[currentMember].bio.split('\n\n').map((paragraph, index) => (
+                    <p key={index} className="text-lg text-secondary-600 leading-relaxed">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
                 
                 {/* Expertise Tags */}
                 <div>
@@ -239,7 +240,7 @@ export default function Team() {
                   strokeWidth="3"
                   strokeLinecap="round"
                   fill="none"
-                  strokeDasharray={`${((12 - timeRemaining) / 12) * 100}, 100`}
+                  strokeDasharray={`${((TEAM_ROTATION_SECONDS - timeRemaining) / TEAM_ROTATION_SECONDS) * 100}, 100`}
                   d="M18 2.0845
                     a 15.9155 15.9155 0 0 1 0 31.831
                     a 15.9155 15.9155 0 0 1 0 -31.831"
@@ -296,8 +297,8 @@ export default function Team() {
               Our Leadership Philosophy
             </h3>
             <p className="text-lg text-secondary-600 leading-relaxed max-w-4xl mx-auto">
-              Our diverse team of five leaders combines deep experience in finance, technology, relationship building, 
-              property management, and execution excellence. Together, we deliver projects with integrity, precision, 
+              Our diverse team of four leaders combines deep experience in finance, technology, relationship building,
+              and execution excellence. Together, we deliver projects with integrity, precision, 
               and long-term vision. We are building more than buildings—we are building pathways to equity, prosperity, and purpose.
             </p>
           </div>
