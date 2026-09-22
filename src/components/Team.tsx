@@ -22,10 +22,10 @@ export default function Team() {
     },
     {
       name: "Latisha Douglas", 
-      title: "Chief Information Officer | Co-Founder",
+      title: "President | Cofounder",
       initials: "LD",
       headshot: "/headshots/latisha.png",
-      bio: "A seasoned real estate investor with 20 years of experience acquiring and repositioning properties across multiple states. As CIO, Latisha leverages her extensive background in data analytics and technology to drive commercial property acquisitions and ground-up developments. She's also Vice President of CMWP Foundation, supporting Black and brown entrepreneurs.",
+      bio: "A seasoned real estate investor with 20 years of experience acquiring and repositioning properties across multiple states. As President, Latisha leverages her extensive background in data analytics and technology to drive commercial property acquisitions and ground-up developments. She's also Vice President of CMWP Foundation, supporting Black and brown entrepreneurs.",
       expertise: ["Real Estate Development", "Data Analytics", "Commercial Acquisitions", "Nonprofit Leadership"],
       education: "MBA Technology, M.S. Data Analytics, UConn"
     },
