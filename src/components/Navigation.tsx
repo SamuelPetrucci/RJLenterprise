@@ -27,6 +27,7 @@ export default function Navigation() {
         { href: '#about', label: 'About' },
         { href: '#team', label: 'Team' },
         { href: '#services', label: 'Services' },
+        { href: '/current-projects', label: 'Current Projects' },
         { href: '#contact', label: 'Contact' },
       ]
     : [
@@ -34,6 +35,7 @@ export default function Navigation() {
         { href: '/#about', label: 'About' },
         { href: '/#team', label: 'Team' },
         { href: '/services', label: 'Services' },
+        { href: '/current-projects', label: 'Current Projects' },
         { href: '/contact', label: 'Contact' },
       ]
 
@@ -63,26 +65,26 @@ export default function Navigation() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-2">
+          <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item, index) => (
               <div key={item.href} className="flex items-center">
                 {item.label === 'Contact' && !isHomePage ? (
                   <button
                     onClick={() => setIsContactModalOpen(true)}
-                    className="text-secondary-700 hover:text-primary-600 font-semibold text-lg px-4 py-2 transition-colors duration-200"
+                    className="text-secondary-700 hover:text-primary-600 font-semibold text-base lg:text-lg px-2 lg:px-3 py-2 transition-colors duration-200"
                   >
                     {item.label}
                   </button>
                 ) : (
                   <Link
                     href={item.href}
-                    className="text-secondary-700 hover:text-primary-600 font-semibold text-lg px-4 py-2 transition-colors duration-200"
+                    className="text-secondary-700 hover:text-primary-600 font-semibold text-base lg:text-lg px-2 lg:px-3 py-2 transition-colors duration-200"
                   >
                     {item.label}
                   </Link>
                 )}
                 {index < navItems.length - 1 && (
-                  <span className="text-secondary-400 mx-2">|</span>
+                  <span className="text-secondary-400 mx-1">|</span>
                 )}
               </div>
             ))}
