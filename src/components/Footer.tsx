@@ -73,6 +73,11 @@ export default function Footer() {
                   Services
                 </Link>
               </li>
+              <li>
+                <Link href="/current-projects" className="text-gray-300 hover:text-primary-400 transition-colors text-sm">
+                  Current Projects
+                </Link>
+              </li>
                   <li>
                     <button 
                       onClick={() => setIsContactModalOpen(true)}
