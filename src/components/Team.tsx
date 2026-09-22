@@ -22,7 +22,7 @@ export default function Team() {
     },
     {
       name: "Latisha Douglas", 
-      title: "President | Cofounder",
+      title: "President | Co-Founder",
       initials: "LD",
       headshot: "/headshots/latisha.png",
       bio: "A seasoned real estate investor with 20 years of experience acquiring and repositioning properties across multiple states. As President, Latisha leverages her extensive background in data analytics and technology to drive commercial property acquisitions and ground-up developments. She's also Vice President of CMWP Foundation, supporting Black and brown entrepreneurs.",
